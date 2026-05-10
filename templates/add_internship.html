@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Add Internship</h2>
+
+<form method="post">
+    <input type="text" name="title" placeholder="Title"><br><br>
+    <input type="text" name="company" placeholder="Company"><br><br>
+    <textarea name="description" placeholder="Description"></textarea><br><br>
+    <input type="text" name="skills" placeholder="Required skills"><br><br>
+    <input type="date" name="deadline"><br><br>
+
+    <button class="btn" type="submit">Submit</button>
+</form>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Welcome {{ session['name'] }}</h2>
+
+{% if session['role'] == 'student' %}
+
+<div class="stats">
+    <div class="stat-box">
+        <h3>Total Applications</h3>
+        <p>{{ total_applications }}</p>
+    </div>
+
+    <div class="stat-box">
+        <h3>Total Badges</h3>
+        <p>{{ total_badges }}</p>
+    </div>
+</div>
+
+{% else %}
+
+<div class="stats">
+    <div class="stat-box">
+        <h3>Total Internships</h3>
+        <p>{{ total_internships }}</p>
+    </div>
+
+    <div class="stat-box">
+        <h3>Total Applications</h3>
+        <p>{{ total_applications }}</p>
+    </div>
+</div>
+
+<a class="btn" href="/add_internship">Add Internship</a>
+
+<h3>Applicants</h3>
+
+{% if applicants %}
+    {% for a in applicants %}
+        <div class="card">
+            {{ a.name }} — {{ a.email }} — {{ a.title }} — {{ a.status }}
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No applications yet.</p>
+{% endif %}
+
+{% endif %}
+{% endblock %}

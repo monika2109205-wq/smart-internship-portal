@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Available Internships</h2>
+
+{% if session.get('role') == 'student' %}
+    <p><b>Your Skills:</b> {{ student_skills }}</p>
+{% endif %}
+
+{% if internships %}
+    {% for i in internships %}
+        <div class="card">
+            <h3>{{ i.title }}</h3>
+
+            <p><b>Company:</b> {{ i.company }}</p>
+            <p><b>Description:</b> {{ i.description }}</p>
+            <p><b>Required Skills:</b> {{ i.skills }}</p>
+
+            {% if i.match is not none %}
+                <p><b>Match:</b> {{ i.match }}%</p>
+            {% endif %}
+
+            <p><b>Deadline:</b> {{ i.deadline }}</p>
+
+            {% if session.get('role') == 'admin' %}
+                <a class="btn" href="/add_quiz/{{ i.id }}">Add Quiz</a>
+            {% endif %}
+
+            {% if session.get('role') == 'student' %}
+                <a class="btn" href="/apply/{{ i.id }}">Apply</a>
+                <a class="btn" href="/take_quiz/{{ i.id }}">Take Quiz</a>
+                <a class="btn" href="/mock_interview/{{ i.id }}">Mock Interview</a>
+                <a class="btn" href="/evaluate_application/{{ i.id }}">Evaluate</a>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No internships available.</p>
+{% endif %}
+
+{% endblock %}

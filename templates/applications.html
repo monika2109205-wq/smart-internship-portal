@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Applications</h2>
+
+{% if session['role'] == 'admin' %}
+
+    {% if applications %}
+        {% for a in applications %}
+            <p>
+                {{ a.name }} — {{ a.email }} — {{ a.title }} — {{ a.status }}
+            </p>
+        {% endfor %}
+    {% else %}
+        <p>No applications yet.</p>
+    {% endif %}
+
+{% else %}
+
+    {% if applications %}
+        {% for a in applications %}
+            <p>
+                {{ a.title }} — {{ a.company }} — {{ a.status }}
+            </p>
+        {% endfor %}
+    {% else %}
+        <p>No applications yet.</p>
+    {% endif %}
+
+{% endif %}
+
+{% endblock %}

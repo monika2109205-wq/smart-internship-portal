@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Mock Interview</h2>
+
+<form method="post">
+    {% for question in questions %}
+        <div class="card">
+            <p><b>{{ loop.index }}. {{ question }}</b></p>
+            <textarea name="answer_{{ loop.index0 }}" rows="4" required></textarea>
+        </div>
+    {% endfor %}
+
+    <button class="btn" type="submit">Submit Interview</button>
+</form>
+
+{% endblock %}

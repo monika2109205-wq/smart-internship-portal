@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>My Badges</h2>
+
+{% if badges %}
+    {% for b in badges %}
+        <p>{{ b.title }} — {{ b.badge_name }}</p>
+    {% endfor %}
+{% else %}
+    <p>No badges yet.</p>
+{% endif %}
+{% endblock %}
